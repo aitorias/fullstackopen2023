@@ -8,11 +8,19 @@ function Button({ handleClick, text }) {
   return <button onClick={handleClick}>{text}</button>;
 }
 
-function Statistic(props) {
+function Statistics(props) {
+  if (props.all === 0) {
+    return <p>No feedback given</p>;
+  }
   return (
-    <p>
-      {props.text} {props.value}
-    </p>
+    <div>
+      <p>good {props.good}</p>
+      <p>neutral {props.neutral}</p>
+      <p>bad {props.bad}</p>
+      <p>all {props.all}</p>
+      <p>average {props.average}</p>
+      <p>positive {props.positive}</p>
+    </div>
   );
 }
 
@@ -36,12 +44,14 @@ function App() {
 
       <Header title={"statistics"} />
 
-      <Statistic text={"good"} value={good} />
-      <Statistic text={"neutral"} value={neutral} />
-      <Statistic text={"bad"} value={bad} />
-      <Statistic text={"all"} value={all} />
-      <Statistic text={"average"} value={average} />
-      <Statistic text={"positive"} value={`${positive} %`} />
+      <Statistics
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        all={all}
+        average={average}
+        positive={positive}
+      />
     </div>
   );
 }

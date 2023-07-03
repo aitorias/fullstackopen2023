@@ -1,10 +1,10 @@
 function Header(props) {
-  console.log(`Header component props: ${props}`);
+  console.log("Header component props", props);
   return <h1>{props.course.name}</h1>;
 }
 
 function Part(props) {
-  console.log(`Part component props: ${props}`);
+  console.log("Part component props", props);
   return (
     <p>
       {props.part.name} {props.part.exercises}
@@ -13,7 +13,7 @@ function Part(props) {
 }
 
 function Content(props) {
-  console.log(`Content component props: ${props}`);
+  console.log("Content component props", props);
   return (
     <div>
       <Part part={props.course.parts[0]} />
@@ -24,7 +24,7 @@ function Content(props) {
 }
 
 function Total(props) {
-  console.log(`Total component props: ${props}`);
+  console.log("Total component props", props);
   return (
     <p>
       Number of exercises{" "}

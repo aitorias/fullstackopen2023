@@ -32,19 +32,46 @@ const App = () => {
   const handleVote = () => {
     const newVotes = [...votes];
 
-    newVotes[selected]++;
+    newVotes[selected] += 1;
     setVotes(newVotes);
   };
 
+  const getMaxVotesIndex = () => {
+    let maxVotesIndex = 0;
+
+    for (let i = 1; i < votes.length; i++) {
+      if (votes[i] > votes[maxVotesIndex]) {
+        maxVotesIndex = i;
+      }
+    }
+    return maxVotesIndex;
+  };
+
+  const maxVotesIndex = getMaxVotesIndex();
+  const maxVotes = votes[maxVotesIndex];
+
   return (
-    <div>
-      <div>{anecdotes[selected]}</div>
-      <p>has {votes[selected]} votes</p>
-      <div>
-        <Button handleClick={handleVote} text="vote" />
-        <Button handleClick={handleClick} text="next anectdote" />
-      </div>
-    </div>
+    <article>
+      <section>
+        <h1>Anecdote of the Day</h1>
+        <div>{anecdotes[selected]}</div>
+        <p>has {votes[selected]} votes</p>
+        <div>
+          <Button handleClick={handleVote} text="vote" />
+          <Button handleClick={handleClick} text="next anectdote" />
+        </div>
+      </section>
+      {maxVotes > 0 && (
+        <section>
+          <div>
+            <h1>Anecdote with most votes</h1>
+            <div>{anecdotes[maxVotesIndex]}</div>
+            <p>has {votes[maxVotesIndex]} votes</p>
+          </div>
+        </section>
+      )}
+      {maxVotes === 0 && <p>No votes yet</p>}
+    </article>
   );
 };
 
